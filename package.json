@@ -1,0 +1,13 @@
+{
+  "name": "Everroof",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "serve dist/",
+    "build": "Everroof Build",
+    "preview": "Everroof preview",
+    "Everroof": "Everroof"
+  },
+
+}
