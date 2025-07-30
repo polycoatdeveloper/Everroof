@@ -7212,7 +7212,10 @@ p + .quote-classic {
 * Footers
 
 */
-
+p.rights a:hover{
+	color:white;
+	
+}
 .footer-classic02 {
 	text-align: center;
 	
@@ -7808,7 +7811,7 @@ color:#000 !important;}
 	font-size: 0;
 	line-height: 0;
 	transform: translate3d(0, -12px, 0);
-	margin-bottom: -12px;
+	margin-top: -12px;
 	margin-left: -6px;
 	margin-right: -6px;
 }
