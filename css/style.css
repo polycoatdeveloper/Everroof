@@ -143,7 +143,13 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, [class^='heading-'] a {
 h1 a:focus, h1 a:hover, h2 a:focus, h2 a:hover, h3 a:focus, h3 a:hover, h4 a:focus, h4 a:hover, h5 a:focus, h5 a:hover, h6 a:focus, h6 a:hover, [class^='heading-'] a:focus, [class^='heading-'] a:hover {
 	color: #ff5200;
 }
-
+  @media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 480px) {
+	.apnbadge{
+		margin-top:5px !important;
+	}
+  }
 h1,
 .heading-1 {
 	font-size: 50px;
