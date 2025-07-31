@@ -10475,7 +10475,7 @@ p + p {
 }
 
 img + p {
-	margin-top: 35px;
+	margin-top: 0px;
 }
 
 h3 + img {
