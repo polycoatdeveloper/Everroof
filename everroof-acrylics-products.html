@@ -14,7 +14,28 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/novi.css">
 <style>
+.apnbadge {
+    position:relative;
+    top:-30px;
+  }
+  .apnbadge img{
+    display:block;
+    margin:auto;
+  }
+@media (min-width: 768px) {
 
+  .apnbadge {
+    margin-top:0px;
+  }
+}
+  @media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 480px) {
+  .apnbadge{
+    margin-top:-50px !important;
+    padding-left:10px;
+  }
+  }
 .footer-classic-2{
   background:url('images/bg-footer-1.png') !important;
   background-repeat:no-repeat;
