@@ -7359,7 +7359,7 @@ p.rights a:hover{
 .footer-classic-header {
 	position: relative;
 	padding-top: 50px;
-	padding-bottom: 0px !important;
+	padding-bottom: 1px !important;
 }
 
 .footer-classic-header::before {
