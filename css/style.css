@@ -11,6 +11,35 @@
 * Contexts
 
 */
+
+
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+	justify-content:center;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 400px; /* Adjust as needed */
+  background-color: #1c75bc;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 125%; /* Position the tooltip above the text */
+  margin-left: -25px; /* Adjust to center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 a:focus,
 button:focus {
 	outline: none !important;
