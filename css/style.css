@@ -2199,8 +2199,6 @@ h4 + .group-md {
 
 */
 .unit {
-	display:block;
-	flex: 0 1 100%;
 	margin-bottom: -20px;
 	margin-left: -30px;
 }
