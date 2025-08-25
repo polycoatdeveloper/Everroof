@@ -546,78 +546,94 @@ right: 0;
   </video>
   
   
-<section class="section section-md bg-gray-100 text-md-left section-relative novi-background">
-      <div class="container">
-          <h3 align="center">Roof Coating Calculator</h3>
-          <div class="calc" id="step1">
-                <form id="calcForm">
-                  <label>
-                    Select Substrate:
-                    <select id="substrate">
-                      <option value="concrete">Concrete</option>
-                      <option value="metal">Metal</option>
-                      <option value="bitumen">Bitumen</option>
-                      <option value="epdm">EPDM</option>
-                      <option value="pvc">PVC</option>
-                      <option value="tpo">TPO</option>
-                    </select>
-                  </label>
-            </div>
-               
-              <div class="calc" id="step2">  
-                  <label>
-                    Select Warranty:
-                    <input type="radio" name="warranty" value="10" checked> 10 Years
-                    <input type="radio" name="warranty" value="15"> 15 Years
-                    <input type="radio" name="warranty" value="20"> 20 Years
-                  </label>
-              </div>
-              
-              <div class="calc" id="step3">
-                  <label>
-                    Project Area (in square feet):
-                    <input type="number" id="area" required>
-                  </label>
-              </div>
-              <div class="calc" id="step4">
-                  <button type="button" onclick="calculate()">Calculate</button>
-              </div>
-                </form>
-              
-                <div class="result" id="result"></div>
+
+  <section>
+    <div class="row">
+    <h2>Roofing Project Estimator</h2>
+    
+    <form id="estimatorForm">
+      <div class="calc">
+      <label for="substrate">Select Substrate:</label>
+  
+      <select id="substrate" required>
+        <option value="concrete">Concrete</option>
+        <option value="metal">Metal</option>
+        <option value="bitumen">Bitumen</option>
+        <option value="epdm">EPDM</option>
+        <option value="pvc">PVC</option>
+        <option value="tpo">TPO</option>
+      </select>
+      </div>
+    <div class="calc">
+      <label for="warranty">Select Warranty:</label>
+      <select id="warranty" required>
+        <option value="">-- Select Warranty --</option>
+        <option value="10">10 Year</option>
+        <option value="15">15 Year</option>
+        <option value="20">20 Year</option>
+      </select>
+    </div>
+    <div class="calc">
+      <label for="length">Length of Project Area (ft):</label>
+      <input type="number" id="length" min="0" step="0.1" required>
+    </div>
+    <div class="calc">
+  
+      <label for="width">Width of Project Area (ft):</label>
+      <input type="number" id="width" min="0" step="0.1" required>
+    </div>
+    <div class="calc">
+      <label for="linealFeet">Lineal Feet (optional):</label>
+      <input type="number" id="linealFeet" min="0" step="0.1">
+    </div>
+    
+      <button type="button" onclick="calculate()">Calculate</button>
+    </div>
+    </form>
+  </section>
+    
+    <div id="results"></div>
     
     <script>
       function calculate() {
-        const area = parseFloat(document.getElementById("area").value);
-        if (isNaN(area) || area <= 0) {
-          alert("Please enter a valid square footage.");
+        const substrate = document.getElementById('substrate').value;
+        const warranty = document.getElementById('warranty').value;
+        const length = parseFloat(document.getElementById('length').value);
+        const width = parseFloat(document.getElementById('width').value);
+        const linealFeet = parseFloat(document.getElementById('linealFeet').value) || 0;
+    
+        if (isNaN(length) || isNaN(width)) {
+          document.getElementById('results').innerHTML = "Please enter valid length and width.";
           return;
         }
-  
-        const product_coverage = 10000; // 1.5 gallons covers 10,000 ft²
-        const overage_percentage = 0.10; // 10%
-  
-        const total_quantity = (area / product_coverage) * (1 + overage_percentage);
-  
-        const substrate = document.getElementById("substrate").value;
-        const warranty = document.querySelector('input[name="warranty"]:checked').value;
-  
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = `
-          <p><strong>Results:</strong></p>
-          <ul>
-            <li>Substrate: ${substrate}</li>
-            <li>Warranty: ${warranty} years</li>
-            <li>Project Area: ${area.toLocaleString()} ft²</li>
-            <li>Total Coating Needed: <strong>${total_quantity.toFixed(2)}</strong> gallons</li>
-          </ul>
+    
+        // Constants
+        const productCoverageSqFt = 100; // 1.5 gallons covers 100 sq ft
+        const overagePercentage = 0.10; // 10% waste/overage
+        const unitPrice = 50; // Example price per unit (e.g., per 1.5 gallons). You can change this.
+    
+        // Area calculation
+        const area = length * width;
+    
+        // Total quantity calculation with overage
+        const rawQuantity = (area / productCoverageSqFt) * (1 + overagePercentage);
+        const totalUnits = Math.ceil(rawQuantity); // Round up to nearest whole unit
+    
+        const totalPrice = totalUnits * unitPrice;
+    
+        document.getElementById('results').innerHTML = `
+          <strong>Estimate Summary</strong><br>
+          Substrate: ${substrate}<br>
+          Warranty: ${warranty} year<br>
+          Project Area: ${area.toFixed(2)} sq ft<br>
+          Lineal Feet: ${linealFeet} ft<br>
+          Product Coverage: ${productCoverageSqFt} sq ft per 1.5 gal<br>
+          Waste/Overage: ${Math.round(overagePercentage * 100)}%<br><br>
+          <strong>Total Units Required:</strong> ${totalUnits} x 1.5 gal<br>
+          <strong>Total Estimated Cost:</strong> $${totalPrice.toFixed(2)}
         `;
       }
     </script>
-      </div>
-    
-  </section>
-
 
  <footer class="section footer-classic footer-classic-2 bg-image novi-background" style="background:url('images/bg-footer-1.png') no-repeat;">
     <div class="footer-classic-content">

@@ -308,88 +308,104 @@
       </div>
     </div>
   </section>
-  
- 
-  
-<form>
-     <label class="form-label">Roof Type</label>
-     <select name="dnn$ctr956$Calculator$ddlRoofType" id="dnn_ctr956_Calculator_ddlRoofType" class="form-select" data-gtm-form-interact-field-id="0">
-        <option value="-1">Select</option>
-        <option value="TPO">TPO</option>
-        <option value="Mod Bit">Mod Bit</option>
-        <option value="PVC">PVC</option>
-        <option value="Metal">Metal</option>
-        <option value="EPDM">EPDM</option>
-        <option value="Concrete">Concrete</option>
-        <option value="SPF">New SPF</option>
-     </select>
-     <span id="dnn_ctr956_Calculator_RoofTypeRequired" style="color:Red;display:none;"></span>
-     </div>
-     <div class="mb-3">
-        <label class="form-label">Warranty</label>
-        <select name="dnn$ctr956$Calculator$ddlDesiredWarranty" id="dnn_ctr956_Calculator_ddlDesiredWarranty" class="form-select" data-gtm-form-interact-field-id="1">
-           <option value="-1">Select</option>
-           <option value="0">No Warranty Needed</option>
-           <option value="10">10 Years</option>
-           <option value="15">15 Years</option>
-           <option value="20">20 Years</option>
-        </select>
-        <span id="dnn_ctr956_Calculator_DesiredWarrantyRequired" style="color:Red;display:none;"></span>
-     </div>
-     <div class="mb-3">
-        <label class="form-label">Are You Sealing Seams?</label>
-        <select name="dnn$ctr956$Calculator$ddlSealingSeams" id="dnn_ctr956_Calculator_ddlSealingSeams" class="form-select">
-           <option value="No">No</option>
-           <option value="Yes">Yes</option>
-        </select>
-        <span class="form-text text-muted">No-Dollar-Limit Warranties require seams to be sealed</span>
-     </div>
-     <div class="mb-3">
-        <label class="form-label">Square Footage</label>
-        <input name="dnn$ctr956$Calculator$txtBaseArea" type="number" id="dnn_ctr956_Calculator_txtBaseArea" class="form-control">
-        <span id="dnn_ctr956_Calculator_AreaRequired" class="text-danger" style="display:none;">Required</span>
-        <span class="form-text text-muted">Account for parapet walls, valleys, waterways and ponding water if applicable</span>
-     </div>
-     <div class="mb-3">
-        <a id="dnn_ctr956_Calculator_btnCalculate" class="btn btn-primary" aria-label="Submit Form" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;dnn$ctr956$Calculator$btnCalculate&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">Calculate</a>
-     </div>
-</div>
-</form>
 
-               <!-- <div class="flex-col">
-                  <div class="unit unit-spacing-xs flex-column flex-md-row col-10">
-                    <div class="unit-left"><img src="images/2018_ever-crylic_system_logo-1.png" alt="" hspace="0" width="200" height="200"></div>
-                    <div class="unit-body">
-                      <h5 class="mt-0"><span data-novi-id="23">Ever-Crylic</span></h5>
-                      <p class=""><span data-novi-id="93"><span data-novi-id="92">Ever-Crylic<span data-novi-id="120">®</span></span></span>: Elastomeric acrylic coating system. Long-term reflectivity for cool roofs.<br><br><span data-novi-id="94">Ever-Crylic<span data-novi-id="95">®</span></span><span data-novi-id="96">Warranty Download</span><br></p>
-                      <ul>
-                        <li><a href="/docs/quickspecs2019/METAL/URETHANE/ER-QS-Ever-Crylic-Metal-10-YR-190916EA.pdf">10 Year Warranty Quick Spec Sheet</a></li>
-                        <li><a href="/docs/quickspecs2019/METAL/URETHANE/ER-QS-Ever-Crylic-Metal-15-YR-190916EA.pdf">15 Year Warranty Quick Spec Sheet</a></li>
-                        <li><a href="/docs/quickspecs2019/METAL/URETHANE/ER-QS-Ever-Crylic-Metal-20-YR-190916EA.pdf">20 Year Warranty Quick Spec Sheet</a></li>
-                      </ul>
-                      <sp></sp><br><br>
-                    </div>
-                  </div>
-                </div>
-               <div class="flex-col">
-               <div class="unit unit-spacing-xs flex-column flex-md-row col-10">
-                 <div class="unit-left"><img src="images/2018_ever-thane_system_logo.png" width="200" alt="Generic placeholder image"></div>
-                 <div class="unit-body">
-                   <h5 class="mt-0"><span data-novi-id="106">Ever-Thane<sup>&reg;</sup></span>:</h5>
-                 <p class=""><span data-novi-id="15">Ever-Thane<sup>&reg;</sup></span>: Polyurethane base and top coat system. Superior resistance to impact and abrasion, chemical exposure, asphalt bleed through, and dirt pickup.<br>
-                 <br>
-                 <span data-novi-id="24">Specs Sheet Download</span><br>
-                 <ul>
-                 <li><a href="docs/quickspecs2019/CONCRETE/URETHANE/ER-QS_10YR_EVER-THANE_CONCRETE_20190925_EA.pdf" target="_blank">10 Year Warranty Quick Spec Sheet</a></li>
-                  <li><a href="docs/quickspecs2019/CONCRETE/URETHANE/ER-QS_15YR_EVER-THANE_CONCRETE_20190925_EA.pdf" target="_blank">15 Year Warranty Quick Spec Sheet</a></li>
-                  <li><a href="docs/quickspecs2019/CONCRETE/URETHANE/ER-QS_20YR_EVER-THANE_CONCRETE_20190925_EA.pdf" target="_blank">20 Year Warranty Quick Spec Sheet</a></li></ul></p>
-                      <sp></sp><br><br>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>-->
+<section>
+  <div class="row">
+  <h2>Roofing Project Estimator</h2>
+  
+  <form id="estimatorForm">
+    <div class="calc">
+    <label for="substrate">Select Substrate:</label>
+
+    <select id="substrate" required>
+      <option value="concrete">Concrete</option>
+      <option value="metal">Metal</option>
+      <option value="bitumen">Bitumen</option>
+      <option value="epdm">EPDM</option>
+      <option value="pvc">PVC</option>
+      <option value="tpo">TPO</option>
+    </select>
+    </div>
+  <div class="calc">
+    <label for="warranty">Select Warranty:</label>
+    <select id="warranty" required>
+      <option value="">-- Select Warranty --</option>
+      <option value="10">10 Year</option>
+      <option value="15">15 Year</option>
+      <option value="20">20 Year</option>
+    </select>
+  </div>
+  <div class="calc">
+    <label for="length">Length of Project Area (ft):</label>
+    <input type="number" id="length" min="0" step="0.1" required>
+  </div>
+  <div class="calc">
+
+    <label for="width">Width of Project Area (ft):</label>
+    <input type="number" id="width" min="0" step="0.1" required>
+  </div>
+  <div class="calc">
+    <label for="linealFeet">Lineal Feet (optional):</label>
+    <input type="number" id="linealFeet" min="0" step="0.1">
+  </div>
+  
+    <button type="button" onclick="calculate()">Calculate</button>
+  </div>
+  </form>
+</section>
+  
+  <div id="results"></div>
+  
+  <script>
+    function calculate() {
+      const substrate = document.getElementById('substrate').value;
+      const warranty = document.getElementById('warranty').value;
+      const length = parseFloat(document.getElementById('length').value);
+      const width = parseFloat(document.getElementById('width').value);
+      const linealFeet = parseFloat(document.getElementById('linealFeet').value) || 0;
+  
+      if (isNaN(length) || isNaN(width)) {
+        document.getElementById('results').innerHTML = "Please enter valid length and width.";
+        return;
+      }
+  
+      // Constants
+      const productCoverageSqFt = 100; // 1.5 gallons covers 100 sq ft
+      const overagePercentage = 0.10; // 10% waste/overage
+      const unitPrice = 50; // Example price per unit (e.g., per 1.5 gallons). You can change this.
+  
+      // Area calculation
+      const area = length * width;
+  
+      // Total quantity calculation with overage
+      const rawQuantity = (area / productCoverageSqFt) * (1 + overagePercentage);
+      const totalUnits = Math.ceil(rawQuantity); // Round up to nearest whole unit
+  
+      const totalPrice = totalUnits * unitPrice;
+  
+      document.getElementById('results').innerHTML = `
+        <strong>Estimate Summary</strong><br>
+        Substrate: ${substrate}<br>
+        Warranty: ${warranty} year<br>
+        Project Area: ${area.toFixed(2)} sq ft<br>
+        Lineal Feet: ${linealFeet} ft<br>
+        Product Coverage: ${productCoverageSqFt} sq ft per 1.5 gal<br>
+        Waste/Overage: ${Math.round(overagePercentage * 100)}%<br><br>
+        <strong>Total Units Required:</strong> ${totalUnits} x 1.5 gal<br>
+        <strong>Total Estimated Cost:</strong> $${totalPrice.toFixed(2)}
+      `;
+    }
+  </script>
+</section>
+
+
+
+
+
+
+
+
+ 
           <div class="col-md-5 col-xl-4">
             <div class="aside aside-services">
               <div class="row row-60">
