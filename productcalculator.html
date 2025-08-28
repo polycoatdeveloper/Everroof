@@ -310,151 +310,167 @@
   </section>
 
 <section>
-  <div class="row">
-  <h2>Roofing Project Estimator</h2>
-  
-  <form id="estimatorForm">
+    <h3 align="center">Roofing Material & Cost Calculator</h3>
+    
     <div class="calc">
-    <label for="substrate">Select Substrate:</label>
-
-    <select id="substrate" required>
-      <option value="concrete">Concrete</option>
-      <option value="metal">Metal</option>
-      <option value="bitumen">Bitumen</option>
-      <option value="epdm">EPDM</option>
-      <option value="pvc">PVC</option>
-      <option value="tpo">TPO</option>
-    </select>
+  
+        <label>Substrate:
+          <select id="substrate">
+            <option value="tpo">TPO</option>
+            <option value="pvc">PVC</option>
+            <option value="epdm">EPDM</option>
+            <option value="metal">Metal</option>
+            <option value="bitumen_aged">Bitumen (Aged)</option>
+            <option value="bitumen_new">Bitumen (New)</option>
+            <option value="concrete">Concrete</option>
+          </select>
+        </label>
     </div>
+  
   <div class="calc">
-    <label for="warranty">Select Warranty:</label>
-    <select id="warranty" required>
-      <option value="">-- Select Warranty --</option>
-      <option value="10">10 Year</option>
-      <option value="15">15 Year</option>
-      <option value="20">20 Year</option>
-    </select>
-  </div>
-  <div class="calc">
-    <label for="length">Length of Project Area (ft):</label>
-    <input type="number" id="length" min="0" step="0.1" required>
+    <label>Warranty:
+      <select id="warranty">
+        <option value="10">10-Year</option>
+        <option value="15">15-Year</option>
+        <option value="20">20-Year</option>
+      </select>
+    </label>
   </div>
   <div class="calc">
-
-    <label for="width">Width of Project Area (ft):</label>
-    <input type="number" id="width" min="0" step="0.1" required>
-  </div>
-  <div class="calc">
-    <label for="linealFeet">Lineal Feet (optional):</label>
-    <input type="number" id="linealFeet" min="0" step="0.1">
+    <row><label><input type="checkbox" id="threeCourse"> Use Fabric Three-Coursing?</label></row>
+    <row><label><input type="checkbox" id="isWarranty"> Project Under Warranty?</label></row>
+    <row><label><input type="checkbox" id="useUrethane"> Use Urethane Flash?</label></row>
   </div>
   
-    <button type="button" onclick="calculate()">Calculate</button>
-  </div>
-  </form>
-</section>
+   <div class="calc">
+ <label>Roof Area (Squares): <input type="number" id="squares" /></label></div>
+   <div class="calc">
+ <label>Lineal Feet: <input type="number" id="linealFeet" /></label></div>
   
-  <div id="results"></div>
+    <div class="calc">
+<label>Project Length (feet): <input type="number" id="length" /></label></div>
+   <div class="calc">
+ <label>Project Width (feet): <input type="number" id="width" /></label></div>
   
-  <script>
-    function calculate() {
-      const substrate = document.getElementById('substrate').value;
-      const warranty = document.getElementById('warranty').value;
-      const length = parseFloat(document.getElementById('length').value);
-      const width = parseFloat(document.getElementById('width').value);
-      const linealFeet = parseFloat(document.getElementById('linealFeet').value) || 0;
+    <div class="calc">
+<label>Waste Percentage (%): <input type="number" id="waste" value="10" /></label></div>
   
-      if (isNaN(length) || isNaN(width)) {
-        document.getElementById('results').innerHTML = "Please enter valid length and width.";
-        return;
+   <div class="calc">
+ <label>Primer Price per Gallon: <input type="number" id="primerPrice" /></label></div>
+   <div class="calc">
+ <label>Flash Price per Gallon: <input type="number" id="flashPrice" /></label></div>
+   <div class="calc">
+ <label>Topcoat Price per Gallon: <input type="number" id="topcoatPrice" /></label></div>
+  
+    <button onclick="calculate()">Calculate</button>
+  
+    <div class="output" id="results"></div>
+  
+    <script>
+      function roundup(value) {
+        return Math.ceil(value);
       }
   
-      // Constants
-      const productCoverageSqFt = 100; // 1.5 gallons covers 100 sq ft
-      const overagePercentage = 0.10; // 10% waste/overage
-      const unitPrice = 50; // Example price per unit (e.g., per 1.5 gallons). You can change this.
+      function calculate() {
+        const substrate = document.getElementById('substrate').value;
+        const squares = parseFloat(document.getElementById('squares').value);
+        const length = parseFloat(document.getElementById('length').value);
+        const width = parseFloat(document.getElementById('width').value);
+        const wastePct = parseFloat(document.getElementById('waste').value) / 100;
+        const isWarranty = document.getElementById('isWarranty').checked;
+        const threeCourse = document.getElementById('threeCourse').checked;
+        const useUrethane = document.getElementById('useUrethane').checked;
   
-      // Area calculation
-      const area = length * width;
+        const primerPrice = parseFloat(document.getElementById('primerPrice').value);
+        const flashPrice = parseFloat(document.getElementById('flashPrice').value);
+        const topcoatPrice = parseFloat(document.getElementById('topcoatPrice').value);
   
-      // Total quantity calculation with overage
-      const rawQuantity = (area / productCoverageSqFt) * (1 + overagePercentage);
-      const totalUnits = Math.ceil(rawQuantity); // Round up to nearest whole unit
+        // === PRIMER RATES ===
+        let primerRate = 0;
+        let primerLabel = '';
   
-      const totalPrice = totalUnits * unitPrice;
+        switch(substrate) {
+          case 'tpo':
+          case 'pvc':
+            primerRate = 0.33;
+            primerLabel = 'U11 Primer';
+            break;
+          case 'epdm':
+            primerRate = 0.5 + (1 / 5); // EPDM Wash (1 per 5) + M100 (0.5)
+            primerLabel = 'EPDM Wash + M100';
+            break;
+          case 'metal':
+            primerRate = 0.33;
+            primerLabel = 'M-40 Primer';
+            break;
+          case 'bitumen_aged':
+            primerRate = 0.5;
+            primerLabel = 'M100 Primer (Aged)';
+            break;
+          case 'bitumen_new':
+            primerRate = 1;
+            primerLabel = 'M100 Primer (New)';
+            break;
+          case 'concrete':
+            primerRate = 0.33;
+            primerLabel = 'M80 Primer';
+            break;
+        }
   
-      document.getElementById('results').innerHTML = `
-        <strong>Estimate Summary</strong><br>
-        Substrate: ${substrate}<br>
-        Warranty: ${warranty} year<br>
-        Project Area: ${area.toFixed(2)} sq ft<br>
-        Lineal Feet: ${linealFeet} ft<br>
-        Product Coverage: ${productCoverageSqFt} sq ft per 1.5 gal<br>
-        Waste/Overage: ${Math.round(overagePercentage * 100)}%<br><br>
-        <strong>Total Units Required:</strong> ${totalUnits} x 1.5 gal<br>
-        <strong>Total Estimated Cost:</strong> $${totalPrice.toFixed(2)}
-      `;
-    }
-  </script>
+        const primerGallons = roundup(squares * primerRate);
+        const primerCost = primerGallons * primerPrice;
+  
+        // === FLASH RATES ===
+        let flashRate = 0.15;
+        if (isWarranty) {
+          if (useUrethane) {
+            flashRate = 0.15;
+          } else if (threeCourse) {
+            flashRate = 0.35;
+          } else {
+            flashRate = 0.15;
+          }
+        }
+  
+        const flashGallons = roundup(squares * flashRate);
+        const flashPails = roundup(flashGallons / 3.5);
+        const flashCost = flashGallons * flashPrice;
+  
+        // === TOPCOAT ===
+        const topcoatRate = 1.5;
+        const topcoatGallons = roundup(squares * topcoatRate);
+        const topcoatBuckets = roundup(topcoatGallons / 5);
+        const topcoatCost = topcoatGallons * topcoatPrice;
+  
+        // === AREA-BASED PRODUCT ESTIMATE ===
+        const area = length * width;
+        const coverageRate = 100; // 1.5 gal covers 100 sq ft (100 sq ft = 1 sq)
+        const topcoatUnits = roundup((area / coverageRate) * (1 + wastePct));
+        const totalAreaCost = topcoatUnits * topcoatPrice;
+  
+        // === FINAL TOTAL ===
+        const totalCost = primerCost + flashCost + topcoatCost;
+  
+        // === OUTPUT ===
+        document.getElementById('results').innerHTML = `
+          <h2>Results</h2>
+          <p><strong>Primer:</strong> ${primerGallons} gallons (${primerLabel}) → $${primerCost.toFixed(2)}</p>
+          <p><strong>Flash:</strong> ${flashGallons} gallons → ${flashPails} pails → $${flashCost.toFixed(2)}</p>
+          <p><strong>Topcoat:</strong> ${topcoatGallons} gallons → ${topcoatBuckets} buckets → $${topcoatCost.toFixed(2)}</p>
+          <hr>
+          <p><strong>Total Material Cost:</strong> $${totalCost.toFixed(2)}</p>
+          <p><strong>Area-based Estimation (with ${wastePct * 100}% waste):</strong> ${topcoatUnits} units → $${totalAreaCost.toFixed(2)}</p>
+        `;
+      }
+    </script>
+  
+
 </section>
 
 
 
 
 
-
-
-
- 
-          <div class="col-md-5 col-xl-4">
-            <div class="aside aside-services">
-              <div class="row row-60">
-                <div class="aside-item col-12">
-                  <h5 class="aside-services-title">Other Roof<br>Substrates</h5>
-                  <ul class="list-category">
-                    <li class="list-category-item"><a class="active" href="metal_roof_systems.html">Metal</a></li>
-                    <li class="list-category-item"><a href="bitumen_roof_systems.html">Modified Bitumen</a></li>
-                    <li class="list-category-item"><a href="epdm_roof_systems.html">Single ply: EPDM</a></li>
-                    <li class="list-category-item"><a href="pvc_roof_systems.html">Single ply: PVc</a></li>
-                    <li class="list-category-item"><a href="tpo_roof_systems.html" class="">single ply: Tpo</a></li>
-                    <li class="list-category-item"></li>
-                    <li class="list-category-item"><a href="concrete_roof_systems.html">Concrete</a></li>
-                  </ul>
-                </div>
-                <div class="aside-item col-sm-6 col-md-12">
-                  <h5 class="aside-services-title">contact US</h5>
-                  <div class="box-contacts">
-                    <div class="box-contacts-item">
-                      <div class="box-contacts-title">Free consultation</div>
-                      <div class="unit unit-spacing-xs flex-column flex-md-row">
-                        <div class="unit-left"><span class="novi-icon icon icon-24 mdi mdi-phone"></span></div>
-                        <div class="unit-body"><a class="phone" href="tel:#">+1 833-7760</a></div>
-                      </div>
-                    </div>
-                    <div class="box-contacts-item">
-                      <div class="box-contacts-title">Office</div>
-                      <div class="unit unit-spacing-xs flex-column flex-md-row">
-                        <div class="unit-left"><span class="novi-icon icon icon-28 mdi mdi-map-marker"></span></div>
-                        <div class="unit-body"><a class="address" href="#">13827 Carmenita Rd, <br>Suite D <br>Santa Fe Springs, CA 90670</a></div>
-                      </div>
-                    </div>
-                    <div class="box-contacts-item">
-                      <div class="box-contacts-title">E-mail</div>
-                      <div class="unit unit-spacing-xs flex-column flex-md-row">
-                        <div class="unit-left"><span class="novi-icon icon mdi mdi-email"></span></div>
-                        <div class="unit-body"><a class="mail" href="mailto:#">info@everroof.com</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="aside-item col-sm-6 col-md-12">
-                  <h5 class="aside-services-title">Our brochure</h5><a class="button button-lg button-icon button-icon-left button-primary button-winona" href="contacts.html"><span class="novi-icon icon mdi mdi-download"></span><span>Download</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-    
 
  <footer class="section footer-classic footer-classic-2 bg-image novi-background" style="background:url('images/bg-footer-1.png') no-repeat;">
           <div class="footer-classic-content">
