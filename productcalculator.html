@@ -308,6 +308,12 @@
       </div>
     </div>
   </section>
+  
+  
+  
+  
+  
+  <!----Calculator--->
 
 <section>
    
@@ -465,10 +471,173 @@
   
 
 </section>
+<!----Calculator-->
 
 
 
+<section>
 
+<h3 align="center">Everroof Material Calculator</h3>
+
+<form id="roofForm">
+  <div class="calc">
+  <label>Substrate Type:
+    <select id="substrateType" required>
+      <option value="">-- Select Substrate Type --</option>
+      <option value="modbit_aged">Mod-Bit (Aged)</option>
+      <option value="modbit_new">Mod-Bit (New)</option>
+      <option value="tpo">Single Ply - TPO</option>
+      <option value="pvc">Single Ply - PVC</option>
+      <option value="epdm">Single Ply - EPDM</option>
+      <option value="metal_galvalume">Metal - Galvalume/Galvanized</option>
+      <option value="metal_m55">Metal - Galvanized (outside CA)</option>
+      <option value="metal_kynar">Metal - Kynar Coated (outside CA)</option>
+      <option value="concrete">Concrete/Wood</option>
+    </select>
+  </label>
+  </div>
+  
+  <div class="calc">
+  <label>Warranty Type:
+    <select id="warrantyType" required>
+      <option value="none">No Warranty</option>
+      <option value="10_material">10 Year - Material Only</option>
+      <option value="15_material">15 Year - Material Only</option>
+      <option value="20_material">20 Year - Material Only</option>
+      <option value="10_labor">10 Year - Labor & Material</option>
+      <option value="15_labor">15 Year - Labor & Material</option>
+      <option value="20_labor">20 Year - Labor & Material</option>
+    </select>
+  </label>
+  </div>
+
+  <label><input type="checkbox" id="useFabric" /> Fabric Three-Coursing</label>
+  <label><input type="checkbox" id="useUrethane" /> Use Urethane Flash (no fabric required)</label>
+<div class="calc">
+  <label>Project Square Footage:
+    <input type="number" id="squareFeet" required />
+  </label>
+</div>
+
+  <button type="button" onclick="calculate()">Calculate</button>
+</form>
+
+<div class="output" id="output"></div>
+
+<script>
+function roundup(value) {
+  return Math.ceil(value);
+}
+
+function calculate() {
+  const substrate = document.getElementById('substrateType').value;
+  const warranty = document.getElementById('warrantyType').value;
+  const useFabric = document.getElementById('useFabric').checked;
+  const useUrethane = document.getElementById('useUrethane').checked;
+  let squareFeet = parseFloat(document.getElementById('squareFeet').value);
+
+  if (!substrate || !warranty || isNaN(squareFeet)) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // === Adjustments ===
+  const wasteFactor = 1.10; // 10% waste
+  const metalStretch = substrate.includes("metal") ? 1.06 : 1.0;
+  squareFeet *= wasteFactor * metalStretch;
+
+  const squares = squareFeet / 100; // Convert to squares
+
+  // === Primer Logic ===
+  let primerLabel = "", primerRate = 0;
+
+  switch (substrate) {
+    case "tpo":
+    case "pvc":
+      primerLabel = "U11 Primer";
+      primerRate = 0.33;
+      break;
+    case "epdm":
+      primerLabel = "EPDM Wash + M100";
+      primerRate = (1 / 5) + 0.5; // 1 gal per 5 sq + 0.5 gal per sq
+      break;
+    case "metal_galvalume":
+      primerLabel = "M-40";
+      primerRate = 0.33;
+      break;
+    case "metal_m55":
+      primerLabel = "M-55";
+      primerRate = 0.33;
+      break;
+    case "metal_kynar":
+      primerLabel = "Polycoat M-130";
+      primerRate = 0.33;
+      break;
+    case "modbit_aged":
+      primerLabel = "M100 (Aged)";
+      primerRate = 0.5;
+      break;
+    case "modbit_new":
+      primerLabel = "M100 (New)";
+      primerRate = 1.0;
+      break;
+    case "concrete":
+      primerLabel = "M80";
+      primerRate = 0.33;
+      break;
+  }
+
+  const primerGallons = roundup(squares * primerRate);
+  const primerKits = roundup(primerGallons / 5);
+
+  // === Flashing Logic ===
+  let flashRate = 0.15;
+  const hasWarranty = warranty !== "none";
+
+  if (hasWarranty) {
+    if (useUrethane) {
+      flashRate = 0.15;
+    } else if (useFabric) {
+      flashRate = 0.35;
+    } else {
+      flashRate = 0.15;
+    }
+  } else {
+    flashRate = 0.15;
+  }
+
+  const flashGallons = roundup(squares * flashRate);
+  const flashPails = roundup(flashGallons / 3.5);
+
+  // === Topcoat Logic ===
+  const topcoatRate = 1.5;
+  const topcoatGallons = roundup(squares * topcoatRate);
+  const topcoatBuckets = roundup(topcoatGallons / 5);
+
+  // === Output Results ===
+  document.getElementById("output").innerHTML = `
+    <h2>Material Estimate</h2>
+    <p><strong>Adjusted Square Footage:</strong> ${squareFeet.toFixed(0)} ft² (${squares.toFixed(1)} squares)</p>
+    
+    <h3>Primer</h3>
+    <p>Type: ${primerLabel}<br>
+    Rate: ${primerRate} gal/sq<br>
+    Total: ${primerGallons} gallons (${primerKits} kits of 5 gal)</p>
+
+    <h3>Roof Flash</h3>
+    <p>Rate: ${flashRate} gal/sq<br>
+    Total: ${flashGallons} gallons (${flashPails} pails of 3.5 gal)</p>
+
+    <h3>Topcoat</h3>
+    <p>Rate: 1.5 gal/sq<br>
+    Total: ${topcoatGallons} gallons (${topcoatBuckets} buckets of 5 gal)</p>
+  `;
+}
+</script>
+<!---calculator2-->
+
+
+</section>
 
 
  <footer class="section footer-classic footer-classic-2 bg-image novi-background" style="background:url('images/bg-footer-1.png') no-repeat;">
