@@ -2214,13 +2214,13 @@ h4 + .group-md {
 }
 
 .unit-body {
-	flex: 0 1 auto;
+	flex: 0 0 auto;
 	color:#000;
 }
 
 .unit-left,
 .unit-right {
-	flex: 20px 20px auto;
+	flex: 0 0 auto;
 	max-width: 100%;
 	float:left;
 }
