@@ -2216,6 +2216,7 @@ h4 + .group-md {
 .unit-body {
 	flex: 0 0 auto;
 	color:#000;
+	padding:10px;
 }
 
 .unit-left,
