@@ -2220,7 +2220,7 @@ h4 + .group-md {
 
 .unit-left,
 .unit-right {
-	flex: 0 0 auto;
+	flex: 20px 20px auto;
 	max-width: 100%;
 	float:left;
 }
