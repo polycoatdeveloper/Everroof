@@ -2223,6 +2223,7 @@ h4 + .group-md {
 	flex: 0 0 auto;
 	max-width: 100%;
 	float:left;
+	padding:10px;
 }
 
 .unit-spacing-xxs {
