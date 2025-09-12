@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="wide wow-animation" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roofing Materials Calculator (No Pricing)</title>
+<title>Concrete Roof Systems</title>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="Keywords" content="Concrete Roof Systems, Polyurethane, Top Coat, resistance, abrasion, asphalt bleed, Spec Sheet">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500,600,700,900%7CRaleway:500">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
   <style>
     :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22c55e;--danger:#ef4444}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#0b1023,#121a39);color:var(--ink);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
@@ -12,7 +20,7 @@
     .sub{color:var(--muted);margin-bottom:20px}
     .grid{display:grid;gap:16px}
     @media(min-width:900px){.grid{grid-template-columns:1.3fr }}
-    .card{background:rgba(17,24,39,.7);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px}
+    .card{background:#fff;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px}
     .row{display:grid;gap:10px;margin-bottom:12px}
     @media(min-width:640px){.row{grid-template-columns:1fr 1fr}}
     label{font-size:13px;color:var(--muted)}
@@ -36,8 +44,142 @@
   </style>
 </head>
 <body>
+  <div class="preloader">
+    <div class="wrapper-triangle">
+      <div class="pen">
+        <div class="line-triangle">
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+        </div>
+        <div class="line-triangle">
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+        </div>
+        <div class="line-triangle">
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+          <div class="triangle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+  <header class="section page-header">
+    <div class="rd-navbar-wrap">
+      <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="150px" data-xl-stick-up-offset="150px" data-xxl-stick-up-offset="150px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+        <div class="rd-navbar-inner-outer novi-background">
+          <div class="rd-navbar-aside novi-background">
+            <div class="rd-navbar-aside-inner">
+              <ul class="rd-navbar-contacts-2">
+                <li>
+                  <div class="unit unit-spacing-xs">
+                    <div class="unit-left"><span class="novi-icon icon mdi mdi-phone"></span></div>
+                    <div class="unit-body"><a class="phone" href="tel:#">+1 833-383-7766</a></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="unit unit-spacing-xs">
+                    <div class="unit-left"><a href="https://goo.gl/maps/2QqbybApeP5JDnSR7" target="_blank" class="novi-icon icon mdi mdi-map-marker"></a></div>
+                    <div class="unit-body"><span class="address" >13827 Carmenita Rd Suite 200, Santa Fe Springs, CA 90670</span></div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-share-2">
+                <li><a class="novi-icon icon mdi mdi-facebook" href="https://www.facebook.com/EverRoof-Products-161169374289318/"></a></li>
+                <li><a class="icon novi-icon mdi mdi-linkedin" href="https://www.linkedin.com/company/everroof/" target="_blank"></a></li>
+  
+              </ul>
+            </div>
+          </div>
+          <div class="rd-navbar-inner">
+            <div class="rd-navbar-panel">
+              <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+              <div class="rd-navbar-brand"><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/everroof®-2019-w-tagline-3d-13.png" alt="" width="219" height="39"></a></div>
+            </div>
+            <div class="rd-navbar-right rd-navbar-nav-wrap">
+              <div class="rd-navbar-aside d-xl-none">
+                <div class="rd-navbar-aside-inner">
+                  <ul class="rd-navbar-contacts-2">
+                    <li></li>
+                    <li></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-navbar-main">
+                <ul class="rd-navbar-nav">
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">About Us</a></li>
+                  <li class="rd-nav-item rd-navbar--has-megamenu rd-navbar-submenu"><a class="rd-nav-link" href="#">Products</a>
+                    <ul class="rd-menu rd-navbar-megamenu">
+                      <li class="rd-megamenu-item">
+                        <h6 class="rd-megamenu-title">Everroof Products</h6>
+                        <ul class="rd-megamenu-list">
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-acrylics-products.html">Acrylic</a></li>
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-primer-products.html">Primers</a></li>
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-silicone-products.html">Silicones</a></li>
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-urethanes-products.html">Urethanes</a></li>
+                          <!--<li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-fiberaccessories-products.html">Fabrics &amp; Accessories</a></li>-->
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu"><a href="#" class="rd-nav-link">Resources</a>
+                    <ul class="rd-menu rd-navbar-dropdown">
+                      <!--<li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-general.html">General</a></li>-->
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-color-chart.html">Color Chart</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="er-drawings.html">Drawings</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="incentives.html">Incentives</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-project-gallery.html">Photos</a></li>
+                       <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="tech-links.html">Tech Links</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="er-video-youtube.html">Videos</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="warranty-form.html">Warranty</a></li>
+                      <!-- <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="blog-post.html">Blog Post</a></li> -->
+                    </ul>
+                  </li>
+          <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu"><a href="#" class="rd-nav-link">System Substrate</a>
+                    <ul class="rd-menu rd-navbar-dropdown">                      
+                     <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="concrete_roof_systems.html">Concrete roofing</a></li>
+                     <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="metal_roof_systems.html">Metal Roofing</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="bitumen_roof_systems.html">modified bitumen roofing</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="epdm_roof_systems.html">single ply epdm Roofing</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="pvc_roof_systems.html">Single ply pvc roofing</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="tpo_roof_systems.html">single ply tpo roofing</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contact Us</a></li>
+                  <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu"><a href="#" class="rd-nav-link">Events</a>
+                    <ul class="rd-menu rd-navbar-dropdown">
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-tradeshows.html">Trade Shows</a></li>
+                      <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="everroof-demos.html">Training/Demos</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+           
+     
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  
   <div class="wrap">
-    <h1>Roofing Materials Calculator</h1>
+    <h3 style="color:#fff;">Roofing Materials Calculator</h1>
     <div class="sub">Estimates material quantities only (no pricing). Uses gallons per square and container conversions.</div>
 
     <div class="grid">
