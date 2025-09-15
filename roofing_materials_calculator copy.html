@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+<head>
+<title>Concrete Roof Systems</title>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="Keywords" content="Concrete Roof Systems, Polyurethane, Top Coat, resistance, abrasion, asphalt bleed, Spec Sheet">
+
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22c55e;--danger:#ef4444}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#0b1023,#121a39);color:var(--ink);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    h1{font-weight:800;letter-spacing:.2px;margin:0 0 10px}
+    .sub{color:var(--muted);margin-bottom:20px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid{grid-template-columns:1.3fr }}
+    .card{background:#fff;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px}
+    .row{display:grid;gap:10px;margin-bottom:12px}
+    @media(min-width:640px){.row{grid-template-columns:1fr 1fr}}
+    label{font-size:13px;color:var(--muted)}
+    select,input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b1023;color:var(--ink)}
+    .inline{display:flex;gap:10px;align-items:center}
+    .inline input[type="checkbox"]{width:18px;height:18px}
+    .btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:700;color:#091018;background:var(--accent);cursor:pointer}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .danger{background:var(--danger);color:white}
+    .muted{color:var(--muted)}
+    .results h2{margin:6px 0 2px;font-size:18px}
+    .kpi{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media(min-width:760px){.kpi{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    .pill{background:#0b1023;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+    .small{font-size:12px}
+    .footer{margin-top:18px;color:var(--muted);font-size:12px}
+    .flex{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{font-size:12px;border:1px solid rgba(255,255,255,.15);padding:4px 8px;border-radius:999px}
+  </style>
+</head>
+<body>
+  
+  
+  <div class="wrap">
+    <h3 style="color:#fff;">Roofing Materials Calculator</h1>
+    <div class="sub">Estimates material quantities only (no pricing). Uses gallons per square and container conversions.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="row">
+          <div>
+            <label>Substrate / Roof Type</label>
+            <select id="substrate">
+              <option value="" selected disabled>Select substrate</option>
+              <option value="TPO">Single Ply — TPO</option>
+              <option value="PVC">Single Ply — PVC</option>
+              <option value="EPDM">Single Ply — EPDM</option>
+              <option value="ModBit-Aged">Mod-Bit — Aged Cap Sheet</option>
+              <option value="ModBit-New">Mod-Bit — New Cap Sheet</option>
+              <option value="Metal-Galvalume">Metal — Galvalume</option>
+              <option value="Metal-Galvanized">Metal — Galvanized (CA)</option>
+              <option value="Metal-Galvanized-Outside">Metal — Galvanized (Outside CA)</option>
+              <option value="Metal-Kynar-Outside">Metal — Kynar-Coated (Outside CA)</option>
+              <option value="Concrete">Concrete / Wood</option>
+            </select>
+          </div>
+          <div>
+            <label>Warranty Term</label>
+            <select id="warranty">
+              <option value="none">No Warranty</option>
+              <option value="10">10 Years</option>
+              <option value="15">15 Years</option>
+              <option value="20">20 Years</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Warranty Type</label>
+            <select id="warrantyType">
+              <option value="material">Material Only</option>
+              <option value="labor">Labor & Material</option>
+            </select>
+          </div>
+          <div>
+            <label>Total Roof Area (sq. ft.)</label>
+            <input id="sqft" type="number" min="0" placeholder="e.g., 100000" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Waste Factor (%)</label>
+            <input id="waste" type="number" min="0" step="0.1" value="10" />
+          </div>
+          <div>
+            <label>Metal Stretch Factor (%) — auto if Metal</label>
+            <input id="stretch" type="number" min="0" step="0.1" value="6" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Roof Flash Product</label>
+            <select id="flashProduct">
+              <option value="standard">Standard (requires fabric if specified)</option>
+              <option value="urethane">Urethane (no fabric required)</option>
+            </select>
+          </div>
+          <div class="inline" style="margin-top:26px">
+            <input id="useFabric" type="checkbox" />
+            <label for="useFabric">Use fabric three-coursing (ignored if urethane)</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Topcoat System</label>
+            <select id="system">
+              <option value="silicone">Silicone</option>
+              <option value="acrylic">Acrylic</option>
+              <option value="urethane">Urethane</option>
+            </select>
+          </div>
+          <div>
+            <label>Topcoat Rate (gal/sq) <span class="small muted">(auto-filled by warranty; editable)</span></label>
+            <input id="topcoatRate" type="number" min="0" step="0.01" />
+          </div>
+        </div>
+
+        <div class="flex">
+          <button class="btn" id="calcBtn">Calculate</button>
+          <button class="btn danger" id="resetBtn" type="button">Reset</button>
+        </div>
+
+        <div class="footer">
+          <div class="badge">1 square = 100 sq. ft.</div>
+          <div class="badge">Primer & Topcoat buckets assumed 5 gal</div>
+          <div class="badge">Roof Flash pails assumed 3.5 gal</div>
+        </div>
+      </div>
+
+      <div class="card results" id="results" hidden>
+        <div class="kpi">
+          <div class="pill"><div class="muted small">Adjusted Area</div><div id="adjSqft" class="h2"></div></div>
+          <div class="pill"><div class="muted small">Total Squares</div><div id="squares"></div></div>
+          <div class="pill"><div class="muted small">Waste Applied</div><div id="wasteShown"></div></div>
+          <div class="pill"><div class="muted small">Stretch Applied</div><div id="stretchShown"></div></div>
+        </div>
+
+        <h2>Primer</h2>
+        <table>
+          <thead><tr><th>Product</th><th>Rate (gal/sq)</th><th>Gallons</th><th>5-gal Kits</th></tr></thead>
+          <tbody id="primerRows"></tbody>
+        </table>
+
+        <h2>Roof Flash</h2>
+        <table>
+          <thead><tr><th>Product</th><th>Rate (gal/sq)</th><th>Gallons</th><th>3.5-gal Pails</th></tr></thead>
+          <tbody id="flashRows"></tbody>
+        </table>
+
+        <h2>Topcoat</h2>
+        <table>
+          <thead><tr><th>System</th><th>Rate (gal/sq)</th><th>Gallons</th><th>5-gal Buckets</th></tr></thead>
+          <tbody id="topcoatRows"></tbody>
+        </table>
+
+        <div class="footer">
+          Estimates only. Verify final application rates with current TDS and warranty rate cards. No pricing is displayed.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const primerGuide = {
+      'TPO': { items: [{ name: 'U11 Primer', rate: 0.33 }] },
+      'PVC': { items: [{ name: 'U11 Primer', rate: 0.33 }] },
+      'EPDM': { items: [
+        { name: 'EPDM Wash (cleaner/primer)', rate: (1/5), note: '1 gal / 5 squares' },
+        { name: 'M100 Primer', rate: 0.5 }
+      ]},
+      'Metal-Galvalume': { items: [{ name: 'M-40 (Acrylic/Silicone compatible)', rate: 0.33 }] },
+      'Metal-Galvanized': { items: [{ name: 'M-40 (CA; Acrylic/Silicone)', rate: 0.33 }] },
+      'Metal-Galvanized-Outside': { items: [{ name: 'M-55 (Outside CA; Silicone/Urethane)', rate: 0.33 }] },
+      'Metal-Kynar-Outside': { items: [{ name: 'Polycoat M-130 (Outside CA)', rate: 0.33 }] },
+      'ModBit-Aged': { items: [{ name: 'M-100 or M-25', rate: 0.5, note: 'Use M100 if minor ponding' }] },
+      'ModBit-New': { items: [{ name: 'M-100 or M-25', rate: 1.0 }] },
+      'Concrete': { items: [{ name: 'M-80', rate: 0.33 }] },
+    };
+
+    const defaultTopcoatByWarranty = { '10': 1.5, '15': 2.0, '20': 2.5 };
+
+    function fmt(n, d=2){ return Number(n).toLocaleString(undefined,{maximumFractionDigits:d,minimumFractionDigits:d}); }
+
+    function getSquares(){
+      const sqft = parseFloat(document.getElementById('sqft').value || 0);
+      const wastePct = parseFloat(document.getElementById('waste').value || 0);
+      const stretchPct = parseFloat(document.getElementById('stretch').value || 0);
+      const substrate = document.getElementById('substrate').value || '';
+
+      let adjusted = sqft * (1 + wastePct/100);
+      const isMetal = substrate.startsWith('Metal-');
+      const stretchApplied = isMetal ? stretchPct : 0;
+      adjusted = adjusted * (1 + (stretchApplied/100));
+      const squares = adjusted / 100;
+
+      return { adjusted, squares, wasteApplied: wastePct, stretchApplied };
+    }
+
+    function gallonsToKits(g){ return Math.ceil(g / 5); }
+    function gallonsToPails(g){ return Math.ceil(g / 3.5); }
+
+    function updateDefaultTopcoatRate(){
+      const warranty = document.getElementById('warranty').value;
+      const input = document.getElementById('topcoatRate');
+      if(warranty === 'none'){ input.value = 0; return; }
+      input.value = defaultTopcoatByWarranty[warranty] ?? 0;
+    }
+
+    document.getElementById('warranty').addEventListener('change', updateDefaultTopcoatRate);
+    window.addEventListener('load', updateDefaultTopcoatRate);
+
+    document.getElementById('resetBtn').addEventListener('click', ()=>{
+      document.getElementById('substrate').value='';
+      document.getElementById('warranty').value='none';
+      document.getElementById('warrantyType').value='material';
+      document.getElementById('sqft').value='';
+      document.getElementById('waste').value='10';
+      document.getElementById('stretch').value='6';
+      document.getElementById('flashProduct').value='standard';
+      document.getElementById('useFabric').checked=false;
+      document.getElementById('system').value='silicone';
+      updateDefaultTopcoatRate();
+      document.getElementById('results').hidden = true;
+    });
+
+    document.getElementById('calcBtn').addEventListener('click', ()=>{
+      const substrate = document.getElementById('substrate').value;
+      const warranty = document.getElementById('warranty').value;
+      const flashProduct = document.getElementById('flashProduct').value;
+      const useFabric = document.getElementById('useFabric').checked;
+      const system = document.getElementById('system').value;
+      const topcoatRate = parseFloat(document.getElementById('topcoatRate').value || 0);
+
+      if(!substrate){ alert('Please select a substrate.'); return; }
+      const sqftVal = parseFloat(document.getElementById('sqft').value || 0);
+      if(!(sqftVal > 0)){ alert('Please enter a valid roof area.'); return; }
+
+      const { adjusted, squares, wasteApplied, stretchApplied } = getSquares();
+
+      // KPI header
+      document.getElementById('adjSqft').textContent = fmt(adjusted,2) + ' sq ft';
+      document.getElementById('squares').textContent = fmt(squares,2) + ' squares';
+      document.getElementById('wasteShown').textContent = fmt(wasteApplied,1) + '%';
+      document.getElementById('stretchShown').textContent = fmt(stretchApplied,1) + '%';
+
+      // Primer rows
+      const pBody = document.getElementById('primerRows');
+      pBody.innerHTML = '';
+      const primer = primerGuide[substrate];
+      if(primer && primer.items){
+        primer.items.forEach(item =>{
+          const g = item.rate * squares;
+          const tr = document.createElement('tr');
+          const note = item.note ? ` <span class="small muted">(${item.note})</span>` : '';
+          tr.innerHTML = `<td>${item.name}${note}</td><td>${fmt(item.rate,2)}</td><td>${fmt(g,1)}</td><td>${gallonsToKits(g)}</td>`;
+          pBody.appendChild(tr);
+        });
+      }
+
+      // Roof Flash
+      const fBody = document.getElementById('flashRows');
+      fBody.innerHTML = '';
+      let flashRate;
+      if(warranty==='none'){
+        flashRate = 0.15; // non-warranty suggestion
+      } else {
+        flashRate = (flashProduct === 'urethane') ? 0.15 : (useFabric ? 0.33 : 0.15);
+      }
+      const flashGallons = flashRate * squares;
+      const flashRow = document.createElement('tr');
+      const flashName = (flashProduct === 'urethane') ? 'Urethane Roof Flash (no fabric required)' : (useFabric ? 'Roof Flash + Fabric Three-Coursing' : 'Roof Flash (no fabric)');
+      flashRow.innerHTML = `<td>${flashName}</td><td>${fmt(flashRate,2)}</td><td>${fmt(flashGallons,1)}</td><td>${gallonsToPails(flashGallons)}</td>`;
+      fBody.appendChild(flashRow);
+
+      // Topcoat
+      const tBody = document.getElementById('topcoatRows');
+      tBody.innerHTML = '';
+      const topGallons = topcoatRate * squares;
+      const tr = document.createElement('tr');
+      const warrantyLabel = (warranty==='none') ? 'Non-warranty' : `${warranty}-Year`;
+      tr.innerHTML = `<td>${system} (${warrantyLabel})</td><td>${fmt(topcoatRate,2)}</td><td>${fmt(topGallons,1)}</td><td>${gallonsToKits(topGallons)}</td>`;
+      tBody.appendChild(tr);
+
+      document.getElementById('results').hidden = false;
+    });
+  </script>
+</body>
+</html>
